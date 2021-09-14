@@ -1,0 +1,112 @@
+/* ===== Hero CSS ===== */
+.hero {
+  background: var(--primary-color);
+  padding-top: 150px;
+  padding-bottom: 100px;
+
+  @media #{$md, $xs} {
+    padding-top: 130px;
+  }
+}
+
+.hero-content {
+  max-width: 780px;
+  margin: auto;
+  margin-bottom: 50px;
+
+  .hero-title {
+    color: var(--white);
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 60px;
+    text-align: center;
+    margin-bottom: 30px;
+
+    @media #{$md} {
+      font-size: 38px;
+      line-height: 50px;
+    }
+
+    @media #{$xs} {
+      font-size: 26px;
+      line-height: 38px;
+    }
+  }
+
+  .hero-desc {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 35px;
+    text-align: center;
+    color: var(--white);
+    opacity: 0.8;
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 30px;
+
+    @media #{$xs} {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+}
+
+.hero-image {
+  max-width: 770px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  .video-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+  }
+
+  .video-btn {
+    width: 70px;
+    height: 70px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: var(--primary-color);
+      color: var(--white);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    text-align: center;
+
+    &.image {
+      border-radius: 12px;
+    }
+  }
+
+  .shape {
+    position: absolute;
+    z-index: -1;
+
+    &.shape-1 {
+      bottom: -35px;
+      left: -35px;
+    }
+
+    &.shape-2 {
+      top: -35px;
+      right: -35px;
+    }
+  }
+}

@@ -1,0 +1,119 @@
+/* ===== Contact CSS ===== */
+.contact {
+  padding: 120px 0px;
+  position: relative;
+
+  @media #{$xs} {
+    padding: 80px 0;
+  }
+}
+
+.single-contact-info {
+  display: flex;
+  background: var(--white);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.05);
+  max-width: 450px;
+
+  .contact-icon {
+    max-width: 50px;
+    width: 100%;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    margin-right: 24px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      background: var(--primary-color);
+      opacity: 0.2;
+      z-index: -1;
+      @include transform(scale(1.2));
+    }
+  }
+
+  .contact-meta {
+    h5 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 28px;
+    }
+  }
+}
+
+.contact-form-wrapper {
+  box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  background: var(--white);
+  padding: 60px;
+  position: relative;
+  z-index: 9;
+
+  @media #{$xs} {
+    padding: 40px 30px;
+  }
+
+  @media #{$laptop, $lg, $sm} {
+    padding: 50px 40px;
+  }
+
+  .contact-form-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    margin-bottom: 30px;
+
+    @media #{$xs} {
+      font-size: 24px;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+
+    label {
+      display: block;
+      font-weight: normal;
+      font-size: 12px;
+    }
+
+    input,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 15px 0;
+      border: none;
+      outline: none;
+      border-bottom: 1px solid #f1f1f1;
+      resize: none;
+
+      &:focus {
+        border-color: var(--primary-color);
+      }
+    }
+  }
+}
+
+.map-container {
+  position: relative;
+  margin-top: -120px;
+}

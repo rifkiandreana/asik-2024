@@ -3,18 +3,18 @@
 
   // ======= Sticky
   window.onscroll = function () {
-    const ud_header = document.querySelector(".header");
-    const sticky = ud_header.offsetTop;
+    const header = document.querySelector(".header");
+    const sticky = header.offsetTop;
     const logo = document.querySelector(".navbar-brand img");
 
     if (window.pageYOffset > sticky) {
-      ud_header.classList.add("sticky");
+      header.classList.add("sticky");
     } else {
-      ud_header.classList.remove("sticky");
+      header.classList.remove("sticky");
     }
 
     // === logo change
-    if (ud_header.classList.contains("sticky")) {
+    if (header.classList.contains("sticky")) {
       logo.src = "assets/images/logo/logo-2.svg";
     } else {
       logo.src = "assets/images/logo/logo.svg";

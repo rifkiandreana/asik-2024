@@ -439,6 +439,7 @@ p {
   background: var(--primary-color);
   padding-top: 180px;
   padding-bottom: 130px;
+  position: relative;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
@@ -450,7 +451,12 @@ p {
 .hero-content {
   max-width: 780px;
   margin: auto;
-  margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-content {
+    margin-bottom: 50px;
+  }
 }
 
 .hero-content .hero-title {
@@ -484,7 +490,7 @@ p {
 .hero-content .hero-desc {
   font-weight: normal;
   font-size: 18px;
-  line-height: 35px;
+  line-height: 30px;
   color: var(--white);
   opacity: 0.8;
   margin-bottom: 30px;
@@ -500,14 +506,37 @@ p {
 @media only screen and (min-width: 992px) and (max-width: 1199px), (max-width: 767px) {
   .hero-content .hero-desc {
     font-size: 16px;
-    line-height: 30px;
+    line-height: 28px;
   }
+}
+
+.hero-content .main-btn {
+  background: var(--white);
+  color: var(--primary-color);
+}
+
+.hero-content .main-btn:hover {
+  background: var(--heading-color);
+  color: var(--white);
 }
 
 .hero-image {
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 100%;
   z-index: 1;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
+  .hero-image {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+  }
 }
 
 .hero-image .video-btn-wrapper {
@@ -530,8 +559,8 @@ p {
 }
 
 .hero-image .video-btn {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   background: var(--white);
   border-radius: 50%;
   display: -webkit-box;
@@ -551,27 +580,12 @@ p {
 }
 
 .hero-image img {
-  max-width: 100%;
-  text-align: center;
-}
-
-.hero-image img.image {
-  border-radius: 12px;
-}
-
-.hero-image .shape {
-  position: absolute;
-  z-index: -1;
-}
-
-.hero-image .shape.shape-1 {
-  bottom: -35px;
-  left: -35px;
-}
-
-.hero-image .shape.shape-2 {
-  top: -35px;
-  right: -35px;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 /* ===== Features CSS ===== */

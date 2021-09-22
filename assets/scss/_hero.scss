@@ -3,6 +3,7 @@
   background: var(--primary-color);
   padding-top: 180px;
   padding-bottom: 130px;
+  position: relative;
 
   @media #{$md, $xs} {
     padding-top: 150px;
@@ -12,7 +13,10 @@
 .hero-content {
   max-width: 780px;
   margin: auto;
-  margin-bottom: 50px;
+
+  @media #{$md, $xs} {
+    margin-bottom: 50px;
+  }
 
   .hero-title {
     color: var(--white);
@@ -39,7 +43,7 @@
   .hero-desc {
     font-weight: normal;
     font-size: 18px;
-    line-height: 35px;
+    line-height: 30px;
     color: var(--white);
     opacity: 0.8;
     margin-bottom: 30px;
@@ -51,15 +55,36 @@
 
     @media #{$lg, $xs} {
       font-size: 16px;
-      line-height: 30px;
+      line-height: 28px;
+    }
+  }
+
+  .main-btn {
+    background: var(--white);
+    color: var(--primary-color);
+
+    &:hover {
+      background: var(--heading-color);
+      color: var(--white);
     }
   }
 }
 
 .hero-image {
   text-align: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 48%;
+  height: 100%;
   z-index: 1;
+
+  @media #{$md, $xs} {
+    position: relative;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
   .video-btn-wrapper {
     display: flex;
@@ -75,8 +100,8 @@
   }
 
   .video-btn {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     background: var(--white);
     border-radius: 50%;
     display: flex;
@@ -90,26 +115,9 @@
   }
 
   img {
-    max-width: 100%;
-    text-align: center;
-
-    &.image {
-      border-radius: 12px;
-    }
-  }
-
-  .shape {
-    position: absolute;
-    z-index: -1;
-
-    &.shape-1 {
-      bottom: -35px;
-      left: -35px;
-    }
-
-    &.shape-2 {
-      top: -35px;
-      right: -35px;
-    }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }

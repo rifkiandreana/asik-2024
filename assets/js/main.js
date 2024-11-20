@@ -15,17 +15,14 @@
 
     // === logo change
     if (header.classList.contains("sticky")) {
-      logo.src = "assets/images/logo/logo-2.svg";
+      logo.src = "assets/images/logo/logo1 (2).png";
     } else {
-      logo.src = "assets/images/logo/logo.svg";
+      logo.src = "assets/images/logo/logo1 (2).png";
     }
 
     // show or hide the back-top-top button
     const backToTop = document.querySelector(".back-to-top");
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
       backToTop.style.display = "flex";
     } else {
       backToTop.style.display = "none";
@@ -48,20 +45,14 @@
   // section menu active
   function onScroll(event) {
     const sections = document.querySelectorAll(".menu-scroll");
-    const scrollPos =
-      window.pageYOffset ||
-      document.documentElement.scrollTop ||
-      document.body.scrollTop;
+    const scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
     for (let i = 0; i < sections.length; i++) {
       const currLink = sections[i];
       const val = currLink.getAttribute("href");
       const refElement = document.querySelector(val);
       const scrollTopMinus = scrollPos + 73;
-      if (
-        refElement.offsetTop <= scrollTopMinus &&
-        refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-      ) {
+      if (refElement.offsetTop <= scrollTopMinus && refElement.offsetTop + refElement.offsetHeight > scrollTopMinus) {
         document.querySelector(".menu-scroll").classList.remove("active");
         currLink.classList.add("active");
       } else {
@@ -72,26 +63,31 @@
 
   window.document.addEventListener("scroll", onScroll);
 
-  //===== close navbar-collapse when a  clicked
+  //===== close navbar-collapse when a clicked (except dropdowns)
   let navbarToggler = document.querySelector(".navbar-toggler");
   const navbarCollapse = document.querySelector(".navbar-collapse");
 
   document.querySelectorAll(".menu-scroll").forEach((e) =>
-    e.addEventListener("click", () => {
-      navbarToggler.classList.remove("active");
-      navbarCollapse.classList.remove("show");
+    e.addEventListener("click", (event) => {
+      // Only close if the clicked item is not a dropdown toggle
+      if (!event.target.closest(".nav-item.dropdown")) {
+        navbarToggler.classList.remove("active");
+        navbarCollapse.classList.remove("show");
+      }
     })
   );
+
   navbarToggler.addEventListener("click", function () {
     navbarToggler.classList.toggle("active");
     navbarCollapse.classList.toggle("show");
   });
 
   // ===== submenu
-  const submenuButton = document.querySelectorAll(".nav-item-has-children");
+  const submenuButton = document.querySelectorAll(".nav-item.dropdown");
   submenuButton.forEach((elem) => {
-    elem.querySelector("a").addEventListener("click", () => {
-      elem.querySelector(".submenu").classList.toggle("show");
+    elem.querySelector("a").addEventListener("click", (e) => {
+      e.preventDefault(); // Prevent closing of the navbar when clicking dropdown
+      elem.querySelector(".dropdown-menu").classList.toggle("show");
     });
   });
 
@@ -100,7 +96,7 @@
 
   // ========= glightbox
   const myGallery = GLightbox({
-    href: "https://www.youtube.com/watch?v=r44RKWyfcFw",
+    href: "https://youtu.be/VPIa2X1J4T8?si=LkjVz6RmYJOTwTVn",
     type: "video",
     source: "youtube", //vimeo, youtube or local
     width: 900,

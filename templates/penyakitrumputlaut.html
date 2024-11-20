@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Penyakit Rumput Laut</title>
+    <style>
+      /* Gaya dasar */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #28a745;
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .container {
+        padding: 20px;
+        max-width: 900px;
+        margin: auto;
+      }
+
+      .section {
+        margin: 20px auto; /* Memberikan margin atas dan bawah */
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        padding: 20px; /* Menambahkan padding agar konten tidak menempel */
+      }
+
+      .section img {
+        width: 100%;
+        height: auto;
+        border-bottom: 3px solid #28a745;
+        margin-bottom: 20px; /* Memberikan jarak dengan konten */
+      }
+
+      .section-content {
+        padding: 0 20px; /* Memberikan padding kiri-kanan */
+      }
+
+      .section h2 {
+        margin: 0 0 10px;
+        color: #28a745;
+        font-size: 22px;
+      }
+
+      .section ul {
+        margin: 10px 0;
+        padding-left: 20px;
+      }
+
+      .section ul li {
+        margin-bottom: 10px;
+      }
+
+      footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 30px;
+      }
+
+      footer p {
+        margin: 0;
+        font-size: 14px;
+      }
+      button {
+        background-color: #ff0000;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+      .btn-back a {
+        color: white;
+        text-decoration: none; /* Menghapus garis bawah */
+      }
+
+      .btn-back a:hover {
+        text-decoration: underline; /* Opsional: memberikan garis bawah saat hover */
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Penyakit pada Rumput Laut</h1>
+    </header>
+    <button type="button" class="btn-back">
+      <a href="/">Kembali</a>
+    </button>
+
+    <div class="container">
+      <!-- Penyakit Ice-Ice -->
+      <div class="section">
+        <img src="{{ url_for('static', filename='assets/images/ice.jpg') }}" alt="Penyakit Ice-Ice" />
+        <div class="section-content">
+          <h2>Penyakit Ice-Ice</h2>
+          <ul>
+            <li>
+              Penyakit ini merupakan efek bertambah tuanya rumput laut dan kekurangan nutrisi yang ditandai dengan timbulnya bintik/bercak-bercak merah pada sebagian thallus yang lama kelamaan menjadi kuning pucat dan akhirnya
+              berangsur-angsur menjadi putih dan akhirnya menjadi hancur atau rontok.
+            </li>
+            <li>Stress yang diakibatkan perubahan kondisi lingkungan yang mendadak seperti: perubahan salinitas, suhu air, dan intensitas cahaya merupakan faktor utama yang memacu timbulnya penyakit ice-ice.</li>
+            <li>Faktor-faktor predisposisi atau pemicu lainnya juga dapat menyebabkan ice-ice. Predisposisi itu antara lain serangan hama seperti ikan baronang.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Penyakit Kerak Bryozoa -->
+      <div class="section">
+        <img src="{{ url_for('static', filename='assets/images/kerak.jpg') }}" alt="Penyakit Kerak Bryozoa" />
+        <div class="section-content">
+          <h2>Penyakit Kerak Bryozoa</h2>
+          <ul>
+            <li>Penyakit Kerak Bryozoa pada rumput laut disebabkan oleh serangan hama, terutama spesies <i>Membranipora spp.</i>. Infeksi ini ditandai dengan adanya kerak berwarna keputihan yang menempel pada batang rumput laut.</li>
+            <li>Kualitas lingkungan dan air yang buruk serta pemilihan lokasi budidaya yang tidak tepat.</li>
+            <li>Penyebab utama, stres lingkungan seperti peningkatan suhu atau polusi juga dapat meningkatkan kerentanannya terhadap infeksi.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Informasi Rumput Laut. Semua Hak Dilindungi.</p>
+    </footer>
+  </body>
+</html>

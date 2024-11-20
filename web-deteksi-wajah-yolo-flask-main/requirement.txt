@@ -1,0 +1,16 @@
+Flask==3.0.0
+Flask-RESTful==0.3.10
+Flask-Uploads==0.2.1
+gunicorn==22.0.0
+Jinja2==3.1.2
+numpy==1.26.4
+nvidia-cuda-runtime-cu12==12.5.82
+opencv-python==4.8.1.78
+Pillow==10.1.0
+torch==2.2.1+cu121
+torchaudio==2.2.1+cu121
+torchvision==0.17.1+cu121
+ultralytics==8.2.48
+ultralytics-thop==2.0.0
+urllib3==2.1.0
+Werkzeug==3.0.2

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Deteksi Objek dan Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Include SweetAlert2 CSS and JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .container {
+        padding: 20px;
+      }
+      .image-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      #imagePreview,
+      #cameraPreview {
+        max-width: 400px;
+        display: none;
+        height: auto;
+      }
+      .video-container {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+      }
+      .media-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .btn-back a {
+        color: white;
+        text-decoration: none;
+      }
+      .btn-back a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-4">Deteksi Penyakit Rumput Laut</h1>
+      <button type="button" class="btn-back mb-3">
+        <a href="/" class="btn btn-secondary">Kembali</a>
+      </button>
+      <!-- Pilihan Fitur -->
+      <div class="row mt-4">
+        <div id="uploadCard" class="col-md-6 mb-4">
+          <div class="card">
+            <img src="{{ url_for('static', filename='assets/images/BG4.png') }}" class="card-img-top" alt="Upload Image" />
+            <div class="card-body text-center">
+              <h5 class="card-title">Upload Foto</h5>
+              <p class="card-text">Unggah foto yang ingin dideteksi.</p>
+              <button id="uploadBtn" class="btn btn-primary w-100">Upload Foto</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="cameraCard" class="col-md-6 mb-4">
+          <div class="card">
+            <img src="{{ url_for('static', filename='assets/images/BG5.png') }}" class="card-img-top" alt="Upload Image" />
+            <div class="card-body text-center">
+              <h5 class="card-title">Ambil Foto Langsung</h5>
+              <p class="card-text">Ambil foto langsung dengan kamera untuk deteksi.</p>
+              <button id="cameraBtn" class="btn btn-info w-100">Ambil Foto</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Foto -->
+      <div id="uploadContainer" class="mt-4" style="display: none">
+        <input type="file" id="imageInput" class="form-control" accept="image/*" />
+        <div class="image-container mt-4">
+          <img id="imagePreview" alt="Gambar Unggahan" />
+        </div>
+        <button id="detectUploadBtn" class="btn btn-success w-100 mt-2" disabled>Deteksi Foto Unggahan</button>
+      </div>
+
+      <!-- Kamera Langsung -->
+      <div id="cameraContainer" class="mt-4" style="display: none">
+        <div class="media-container">
+          <div class="video-container">
+            <video id="video" width="400" height="300" autoplay></video>
+          </div>
+          <div class="image-container mt-4">
+            <img id="cameraPreview" alt="Foto Langsung" />
+          </div>
+        </div>
+        <button id="captureBtn" class="btn btn-warning w-100 mt-2">Capture Foto</button>
+        <button id="detectCameraBtn" class="btn btn-success w-100 mt-2" disabled>Deteksi Foto Langsung</button>
+      </div>
+    </div>
+
+    <script>
+      const uploadBtn = document.getElementById("uploadBtn");
+      const cameraBtn = document.getElementById("cameraBtn");
+      const imageInput = document.getElementById("imageInput");
+      const imagePreview = document.getElementById("imagePreview");
+      const cameraPreview = document.getElementById("cameraPreview");
+      const detectUploadBtn = document.getElementById("detectUploadBtn");
+      const detectCameraBtn = document.getElementById("detectCameraBtn");
+      const captureBtn = document.getElementById("captureBtn");
+      const uploadContainer = document.getElementById("uploadContainer");
+      const cameraContainer = document.getElementById("cameraContainer");
+      const videoElement = document.getElementById("video");
+      const uploadCard = document.getElementById("uploadCard");
+      const cameraCard = document.getElementById("cameraCard");
+
+      let isDetecting = false;
+
+      // Reset state and UI after detection
+      function resetDetection() {
+        isDetecting = false;
+        detectCameraBtn.innerText = "Deteksi Foto Langsung";
+        detectCameraBtn.disabled = false;
+        detectUploadBtn.innerText = "Deteksi Foto Unggahan";
+        detectUploadBtn.disabled = false;
+      }
+
+      // Show upload container
+      uploadBtn.addEventListener("click", () => {
+        uploadContainer.style.display = "block";
+        cameraContainer.style.display = "none";
+        uploadCard.style.display = "none";
+        cameraCard.style.display = "none";
+      });
+
+      // Show camera container
+      cameraBtn.addEventListener("click", () => {
+        uploadContainer.style.display = "none";
+        cameraContainer.style.display = "block";
+        uploadCard.style.display = "none";
+        cameraCard.style.display = "none";
+
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then((stream) => {
+              videoElement.srcObject = stream;
+            })
+            .catch((error) => {
+              console.error("Error accessing camera:", error);
+            });
+        }
+      });
+
+      // Handle image upload
+      imageInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+            detectUploadBtn.disabled = false;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Capture image from camera
+      captureBtn.addEventListener("click", () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const context = canvas.getContext("2d");
+        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+
+        cameraPreview.src = canvas.toDataURL("image/jpeg");
+        cameraPreview.style.display = "block";
+        detectCameraBtn.disabled = false;
+      });
+
+      // Detect uploaded image
+      detectUploadBtn.addEventListener("click", () => {
+        if (isDetecting) return;
+        isDetecting = true;
+        detectUploadBtn.innerText = "Sedang Mendeteksi...";
+
+        fetch("/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: imagePreview.src }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              imagePreview.src = "data:image/jpeg;base64," + data.image;
+            } else {
+              alert("Error: " + data.message);
+            }
+            resetDetection();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to process the image.");
+            resetDetection();
+          });
+      });
+
+      // Detect camera image
+      detectCameraBtn.addEventListener("click", () => {
+        if (isDetecting) return;
+        isDetecting = true;
+        detectCameraBtn.innerText = "Sedang Mendeteksi...";
+
+        fetch("/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ image: cameraPreview.src }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              cameraPreview.src = "data:image/jpeg;base64," + data.image;
+            } else {
+              alert("Error: " + data.message);
+            }
+            resetDetection();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Failed to process the image.");
+            resetDetection();
+          });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- Button to trigger modal
+<button id="uploadBtn" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#uploadModal">
+  Upload Foto
+</button> -->
+
+<!-- Modal HTML -->
+<!-- <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="uploadModalLabel">Upload Foto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body"> -->
+<!-- File Upload Section -->
+<!-- <div id="uploadContainer" class="mt-4">
+          <input type="file" id="imageInput" class="form-control" accept="image/*" />
+          <div class="image-container mt-4">
+            <img id="imagePreview" alt="Gambar Unggahan" style="max-width: 100%;" />
+          </div>
+          <button id="detectUploadBtn" class="btn btn-success w-100 mt-2" disabled>Deteksi Foto Unggahan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Script to handle upload and detection -->
+<!-- <script>
+  // Elements
+  const uploadBtn = document.getElementById("uploadBtn");
+  const imageInput = document.getElementById("imageInput");
+  const imagePreview = document.getElementById("imagePreview");
+  const detectUploadBtn = document.getElementById("detectUploadBtn");
+
+  let isDetecting = false;
+
+  // Reset state and UI after detection
+  function resetDetection() {
+    isDetecting = false;
+    detectUploadBtn.innerText = "Deteksi Foto Unggahan";
+    detectUploadBtn.disabled = false;
+  }
+
+  // Handle file input and image preview
+  imageInput.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = "block";
+        detectUploadBtn.disabled = false;  // Enable the detection button after upload
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Detect uploaded image
+  detectUploadBtn.addEventListener("click", () => {
+    if (isDetecting) return;  // Prevent multiple detection processes
+    isDetecting = true;
+    detectUploadBtn.innerText = "Sedang Mendeteksi...";  // Update button text
+
+    // Send the uploaded image data to the server for detection
+    fetch("/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        image: imagePreview.src,  // Send the image as Base64
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // On success, update the image with the processed result
+        if (data.status === "success") {
+          imagePreview.src = "data:image/jpeg;base64," + data.image;
+        } else {
+          alert("Error: " + data.message);
+        }
+        resetDetection();  // Reset after processing
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Failed to process the image.");
+        resetDetection();  // Reset in case of an error
+      });
+  });
+</script> -->

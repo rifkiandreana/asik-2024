@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SeawCare</title>
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/logo/logo1 (2).png') }}" type="image/svg" />
+
+    <!-- ===== All CSS files ===== -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/glightbox.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/lineicons.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/styles.css') }}" />
+  </head>
+  <body>
+    <!-- ====== Header Start ====== -->
+    <header class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="navbar-wrapper">
+              <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand" href="index.html">
+                  <img src="{{ url_for('static', filename='assets/images/logo/logo1 (2).png') }}" alt="Logo" />
+                </a>
+                <button class="navbar-toggler">
+                  <span class="toggler-icon"> </span>
+                  <span class="toggler-icon"> </span>
+                  <span class="toggler-icon"> </span>
+                </button>
+
+                <div class="navbar-collapse">
+                  <ul id="nav" class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                      <a class="menu-scroll" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="menu-scroll" href="#features">Fitur</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="menu-scroll nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Tentang </a>
+                      <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                        <li><a class="dropdown-item" href="#about">Tentang Seawcare</a></li>
+                        <li><a class="dropdown-item" href="#faq">Jenis Rumput Laut</a></li>
+                        <li><a class="dropdown-item" href="/penyakitrumputlaut">Penyakit Rumput Laut</a></li>
+                      </ul>
+                    </li>
+                    <li class="nav-item">
+                      <a class="menu-scroll" href="#team">Tim Kami</a>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Hero Start ====== -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-10 col-lg-6 col-xl-6">
+            <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+              <h1 class="hero-title">Seawcare</h1>
+              <p class="hero-desc">Solusi Inovatif untuk Budidaya Rumput Laut Berkelanjutan</p>
+              <a href="#features" class="main-btn">Mulai Sekarang</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-xl-6">
+            <div class="hero-image wow fadeInUp" data-wow-delay=".25s">
+              <div class="video-btn-wrapper">
+                <a href="javascript:void(0)" class="video-btn glightbox">
+                  <i class="lni lni-play"></i>
+                </a>
+              </div>
+              <img src="{{ url_for('static', filename='assets/images/bg2.jpg') }}" alt="hero-image" class="image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Hero End ====== -->
+
+    <!-- ====== Features Start ====== -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title mx-auto text-center">
+              <span></span>
+              <h2>Fitur Utama</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-4 col-md-6 col-sm-9">
+            <div class="single-feature wow fadeInUp" data-wow-delay=".1s">
+              <a href="/deteksipenyakit">
+                <div class="feature-icon">
+                  <i class="lni lni-hand"></i>
+                </div>
+                <div class="feature-content">
+                  <h3 class="feature-title">Deteksi Penyakit</h3>
+                  <p class="feature-desc">Deteksi penyakit rumput laut secara cepat dan akurat untuk menjaga kesehatan ekosistem laut.</p>
+
+                  <!-- <a href="http://127.0.0.1:5000/">Test</a> -->
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 col-sm-9">
+            <div class="single-feature wow fadeInUp" data-wow-delay=".1s">
+              <a href="/estimasipanen">
+                <div class="feature-icon">
+                  <i class="lni lni-hand"></i>
+                </div>
+                <div class="feature-content">
+                  <h3 class="feature-title">Estimasi</h3>
+                  <p class="feature-desc">Memperkirakan hasil estimasi laju pertumbuhan dan juga produksi pada rumput laut.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-6 col-sm-9">
+            <div class="single-feature wow fadeInUp" data-wow-delay=".1s">
+              <a href="/persebaran">
+                <div class="feature-icon">
+                  <i class="lni lni-layout"></i>
+                </div>
+                <div class="feature-content">
+                  <h3 class="feature-title">Persebaran Budidaya Rumput Laut</h3>
+                  <p class="feature-desc">Menampilkan lokasi dan distribusi budidaya rumput laut di berbagai wilayah yang ada di Indonesia.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Features End ====== -->
+
+    <!-- ====== About Start ====== -->
+    <section class="About" id="about">
+      <div class="container">
+        <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+          <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+            <h1 class="hero-title">Tentang Seawcare</h1>
+            <p class="hero-desc">
+              Seawcare adalah platform inovatif yang membantu pembudidaya rumput laut meningkatkan produktivitas dan keberlanjutan. Dengan Fitur Deteksi Penyakit Rumput Laut, Perhitungan Produksi dan Laju Pertumbuhan Harian dan Peta
+              Persebaran Budidaya Rumput Laut di Indonesia. Seawcare memudahkan pembudidaya mengenali masalah, memngambil keputusan yang tepat serta memaksimalkan hasil panen. Bersama Seawcare jadikan budidaya rumput laut lebih efisien dan
+              berkelanjutan!
+            </p>
+          </div>
+        </div>
+
+        <!-- <div class="row align-items-center">
+          <div class="col-md-10 col-lg-6 col-xl-6">
+            <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+              <img src="assets/images/bg3.jpg" alt="hero-image" class="image" />
+            </div>
+          </div>
+          <div class="col-lg-6 col-xl-6">
+            <div class="hero-image wow fadeInUp" data-wow-delay=".25s">
+              <div class="hero-content wow fadeInUp" data-wow-delay=".2s">
+                <h1 class="hero-title">Tentang SeawCare</h1>
+                <p class="hero-desc">
+                  SeaCare adalah solusi terdepan dalam menjaga kesehatan ekosistem rumput laut. Dengan menggunakan teknologi deteksi penyakit berbasis AI, kami membantu petani dan pengelola rumput laut memantau dan merawat tanaman mereka
+                  untuk memastikan pertumbuhan yang optimal dan terhindar dari ancaman penyakit yang merugikan. Kami percaya bahwa kelestarian rumput laut adalah kunci untuk masa depan yang berkelanjutan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </section>
+    <!-- ====== About End ====== -->
+
+    <!-- ====== FAQ Start ====== -->
+    <section id="faq" class="faq">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title text-center mx-auto">
+              <span></span>
+              <h2>Jenis-Jenis Rumput Laut</h2>
+              <p>Kenali beberapa jenis rumput laut di Indonesia</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="single-faq wow fadeInUp" data-wow-delay=".1s" onclick="toggleImage('eucheuma')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Eucheuma cottonii</h4>
+                <p>Jenis rumput laut yang dibudidayakan untuk menghasilkan karagenan, bahan pengental alami yang digunakan dalam industri makanan, kosmetik, dan farmasi.</p>
+                <img id="eucheuma" src="{{ url_for('static', filename='assets/images/EC.jpg') }}" alt="Eucheuma cottonii" class="faq-image" style="display: none" />
+              </div>
+            </div>
+            <div class="single-faq wow fadeInUp" data-wow-delay=".15s" onclick="toggleImage('kappaphycus')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Kappaphycus alvarezii</h4>
+                <p>Jenis rumput laut yang tumbuh cepat dan banyak digunakan untuk produksi karagenan, yang digunakan dalam produk makanan, kosmetik, dan obat-obatan.</p>
+                <img id="kappaphycus" src="{{ url_for('static', filename='assets/images/KA.jpg') }}" alt="Kappaphycus alvarezii" class="faq-image" style="display: none" />
+              </div>
+            </div>
+            <div class="single-faq wow fadeInUp" data-wow-delay=".2s" onclick="toggleImage('gracilaria')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Gracilaria verrucosa</h4>
+                <p>Jenis rumput laut yang digunakan dalam industri agar-agar yang dihasilkan dari dinding sel rumput laut ini. Agar-agar digunakan dalam produk makanan, laboratorium, dan farmasi.</p>
+                <img id="gracilaria" src="{{ url_for('static', filename='assets/images/GV.jpg') }}" alt="Gracilaria verrucosa" class="faq-image" style="display: none" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="single-faq wow fadeInUp" data-wow-delay=".1s" onclick="toggleImage('sargassum')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Sargassum</h4>
+                <p>Jenis rumput laut ini banyak ditemukan di pesisir pantai tropis dan sub-tropis. Sargassum digunakan dalam produk pakan ternak, pupuk organik, serta kosmetik.</p>
+                <img id="sargassum" src="{{ url_for('static', filename='assets/images/S.jpg') }}" alt="Sargassum" class="faq-image" style="display: none" />
+              </div>
+            </div>
+            <div class="single-faq wow fadeInUp" data-wow-delay=".15s" onclick="toggleImage('ulva')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Ulva lactuca</h4>
+                <p>Jenis rumput laut yang dimanfaatkan dalam industri makanan, terutama sebagai bahan baku salad laut. Selain itu, juga digunakan dalam pakan ternak dan produksi bioenergi.</p>
+                <img id="ulva" src="{{ url_for('static', filename='assets/images/UL.jpg') }}" alt="Ulva lactuca" class="faq-image" style="display: none" />
+              </div>
+            </div>
+            <div class="single-faq wow fadeInUp" data-wow-delay=".2s" onclick="toggleImage('caulerpa')">
+              <div class="faq-icon">
+                <i class="lni lni-question-circle"></i>
+              </div>
+              <div class="faq-content">
+                <h4>Caulerpa lentillifera</h4>
+                <p>Jenis rumput laut yang banyak ditemukan di wilayah pesisir Asia. Dikenal karena kandungan protein dan mineral yang tinggi, sering digunakan dalam masakan Asia.</p>
+                <img id="caulerpa" src="{{ url_for('static', filename='assets/images/CL.jpg') }}" alt="Caulerpa lentillifera" class="faq-image" style="display: none" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== FAQ End ====== -->
+
+    <!-- ====== Team Start ====== -->
+    <section id="team" class="team">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-title mx-auto text-center">
+              <span></span>
+              <h2>Tim Kami</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="single-team wow fadeInUp" data-wow-delay=".1s">
+              <div class="team-image-wrapper">
+                <div class="team-image">
+                  <img src="{{ url_for('static', filename='assets/images/team/DSCF1024-1.JPG') }}" alt="team" class="img-fluid rounded-circle" />
+                </div>
+              </div>
+              <div class="team-info text-center mt-3">
+                <h5>Rifki Andreana Sutrisno</h5>
+                <!-- <h6>UI Designer</h6> -->
+              </div>
+              <ul class="team-socials list-inline text-center mt-3">
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-facebook-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-twitter-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-instagram-filled"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="single-team wow fadeInUp" data-wow-delay=".15s">
+              <div class="team-image-wrapper">
+                <div class="team-image">
+                  <img src="{{ url_for('static', filename='assets/images/team/umi.JPG') }}" alt="team" class="img-fluid rounded-circle" />
+                </div>
+              </div>
+              <div class="team-info text-center mt-3">
+                <h5>Umi Holifah Mashur</h5>
+                <!-- <h6>Product Designer</h6> -->
+              </div>
+              <ul class="team-socials list-inline text-center mt-3">
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-facebook-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-twitter-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-instagram-filled"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="single-team wow fadeInUp" data-wow-delay=".2s">
+              <div class="team-image-wrapper">
+                <div class="team-image">
+                  <img src="{{ url_for('static', filename='assets/images/team/kiara.JPG') }}" alt="team" class="img-fluid rounded-circle" />
+                </div>
+              </div>
+              <div class="team-info text-center mt-3">
+                <h5>Kiara Adiza</h5>
+                <!-- <h6>App Developer</h6> -->
+              </div>
+              <ul class="team-socials list-inline text-center mt-3">
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-facebook-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-twitter-filled"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0)">
+                    <i class="lni lni-instagram-filled"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Team End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="footer wow fadeInUp" data-wow-delay=".15s">
+      <div class="footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+              <div class="widget">
+                <a href="index.html" class="footer-logo">
+                  <img src="{{ url_for('static', filename='assets/images/logo/logo1 (2).png') }}" alt="logo" />
+                </a>
+                <p class="widget-desc">Seawcare membantu pembudidaya dengan teknologi inovatif untuk budidaya rumput laut berkelanjutan.</p>
+
+                <ul class="widget-socials">
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="lni lni-facebook-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="lni lni-twitter-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="lni lni-instagram-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">Tentang</h5>
+                <ul class="widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Jenis Rumput Laut</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Penyakit Rumput Laut</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Tim Kami</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">Fitur</h5>
+                <ul class="widget-links">
+                  <li>
+                    <a href="/deteksipenyakit">Deteksi Penyakit</a>
+                  </li>
+                  <li>
+                    <a href="/estimasi">Estimasi Hasil Panen</a>
+                  </li>
+                  <li>
+                    <a href="/persebaran">Persebaran Budidaya Rumput Laut</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+              <div class="widget">
+                <h5 class="widget-title">Lokasi Kami</h5>
+                <div class="widget-map">
+                  <!-- Menampilkan Google Maps dengan lokasi spesifik -->
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.012669839575!2d106.13509247474975!3d-6.128996693857774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e418b1e30479783%3A0x2dbd7d9892367634!2sSudut%20Greenland!5e0!3m2!1sid!2sid!4v1731997548767!5m2!1sid!2sid"
+                    width="100%"
+                    height="200"
+                    style="border: 0; border-radius: 8px"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  >
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <!-- ===== All JavaScript files ===== -->
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/wow.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+  </body>
+</html>

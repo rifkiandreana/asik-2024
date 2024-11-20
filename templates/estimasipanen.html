@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Rumput Laut</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f0f8ff;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      header {
+        background-color: #00b300;
+        color: white;
+        width: 100%;
+        text-align: center;
+        padding: 2rem 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .card-container {
+        display: flex;
+        justify-content: space-around;
+        margin: 2rem;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .card {
+        background-color: white;
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 12px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .card img {
+        width: 100%;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .card img:hover {
+        transform: scale(1.05);
+      }
+
+      .card h3 {
+        font-size: 1.5rem;
+        color: #00b300;
+        margin-top: 1rem;
+      }
+
+      .card p {
+        font-size: 1rem;
+        color: #555;
+        margin: 0.5rem 0 1rem;
+      }
+
+      .card button {
+        background-color: #00b300;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .card button:hover {
+        background-color: #00574b;
+      }
+
+      .calculator-section {
+        display: none;
+        max-width: 600px;
+        width: 100%;
+        background: white;
+        padding: 2rem;
+        margin: 2rem auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .calculator-section.active {
+        display: block;
+      }
+
+      .calculator-section input {
+        width: 100%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .calculator-section input:focus {
+        border-color: #00b300;
+      }
+
+      .back-home-button {
+        padding: 10px 20px;
+        background-color: #00b300;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        text-align: center;
+        transition: background-color 0.3s ease;
+      }
+
+      .back-home-button:hover {
+        background-color: #00574b;
+      }
+
+      footer {
+        background-color: #00b300;
+        color: white;
+        width: 100%;
+        padding: 1.5rem 0;
+        text-align: center;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      @media (max-width: 768px) {
+        .card-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .card {
+          width: 90%;
+        }
+      }
+      .btn-back a {
+        color: white;
+        text-decoration: none; /* Menghapus garis bawah */
+      }
+
+      .btn-back a:hover {
+        text-decoration: underline; /* Opsional: memberikan garis bawah saat hover */
+      }
+      button {
+        background-color: #ff0000;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Laju Pertumbuhan & Produksi</h1>
+    </header>
+    <button type="button" class="btn-back">
+      <a href="/">Kembali</a>
+    </button>
+
+    <section class="card-container" id="cardContainer">
+      <!-- Kartu Laju Pertumbuhan -->
+      <div class="card" id="growthCard" onclick="hideCards()">
+        <img src="{{ url_for('static', filename='assets/images/BG5.png') }}" alt="Laju Pertumbuhan Rumput Laut" />
+        <h3>Laju Pertumbuhan (G)</h3>
+        <p>Kalkulator untuk menghitung laju pertumbuhan rumput laut berdasarkan berat awal, berat akhir, dan lama pemeliharaan.</p>
+        <button onclick="showCalculator('growth')">Hitung</button>
+      </div>
+
+      <!-- Kartu Produksi Biomassa -->
+      <div class="card" id="biomassCard" onclick="hideCards()">
+        <img src="{{ url_for('static', filename='assets/images/BG4.png') }}" alt="Produksi Biomassa Rumput Laut" />
+        <h3>Produksi Biomassa (Pr)</h3>
+        <p>Kalkulator untuk menghitung produksi biomassa rumput laut berdasarkan berat awal, berat akhir, panjang tali, dan jumlah titik tanam.</p>
+        <button onclick="showCalculator('biomass')">Hitung</button>
+      </div>
+    </section>
+
+    <main>
+      <!-- Formulir Laju Pertumbuhan -->
+      <section id="growth" class="calculator-section">
+        <h2>Laju Pertumbuhan (G)</h2>
+        <form id="growthForm">
+          <label for="wo">Berat Awal (Wo) (g):</label>
+          <input type="number" id="wo" placeholder="Masukkan Wo" required />
+
+          <label for="wt">Berat Akhir (Wt) (g):</label>
+          <input type="number" id="wt" placeholder="Masukkan Wt" required />
+
+          <label for="n">Lama Pemeliharaan (N) (hari):</label>
+          <input type="number" id="n" placeholder="Masukkan N" required />
+
+          <button type="button" onclick="calculateGrowth()">Hitung</button>
+        </form>
+        <p id="growthResult" class="result">Hasil: -</p>
+        <button class="back-home-button" onclick="goHome()">Kembali ke Home</button>
+      </section>
+
+      <!-- Formulir Produksi Biomassa -->
+      <section id="biomass" class="calculator-section">
+        <h2>Produksi Biomassa (Pr)</h2>
+        <form id="biomassForm">
+          <label for="woPr">Berat Awal (Wo) (g):</label>
+          <input type="number" id="woPr" placeholder="Masukkan Wo" required />
+
+          <label for="wtPr">Berat Akhir (Wt) (g):</label>
+          <input type="number" id="wtPr" placeholder="Masukkan Wt" required />
+
+          <label for="b">Panjang Tali (B) (m):</label>
+          <input type="number" id="b" placeholder="Masukkan Panjang Tali" required />
+
+          <label for="a">Jumlah Titik Tanam (A):</label>
+          <input type="number" id="a" placeholder="Masukkan Jumlah Titik" required />
+
+          <button type="button" onclick="calculateBiomass()">Hitung</button>
+        </form>
+        <p id="biomassResult" class="result">Hasil: -</p>
+        <button class="back-home-button" onclick="goHome()">Kembali ke Home</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Seawcare. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      function hideCards() {
+        document.getElementById("cardContainer").style.display = "none";
+      }
+
+      function showCalculator(type) {
+        document.getElementById("cardContainer").style.display = "none";
+        document.getElementById(type).classList.add("active");
+      }
+
+      function goHome() {
+        document.getElementById("cardContainer").style.display = "flex";
+        document.getElementById("growth").classList.remove("active");
+        document.getElementById("biomass").classList.remove("active");
+      }
+
+      function calculateGrowth() {
+        const wo = parseFloat(document.getElementById("wo").value);
+        const wt = parseFloat(document.getElementById("wt").value);
+        const n = parseFloat(document.getElementById("n").value);
+
+        if (isNaN(wo) || isNaN(wt) || isNaN(n)) {
+          alert("Harap masukkan nilai valid!");
+          return;
+        }
+
+        const growth = ((wt - wo) / n).toFixed(2);
+        document.getElementById("growthResult").textContent = `Hasil: ${growth} g/hari`;
+      }
+
+      function calculateBiomass() {
+        const woPr = parseFloat(document.getElementById("woPr").value);
+        const wtPr = parseFloat(document.getElementById("wtPr").value);
+        const b = parseFloat(document.getElementById("b").value);
+        const a = parseFloat(document.getElementById("a").value);
+
+        if (isNaN(woPr) || isNaN(wtPr) || isNaN(b) || isNaN(a)) {
+          alert("Harap masukkan nilai valid!");
+          return;
+        }
+
+        const biomass = ((wtPr - woPr) * b * a).toFixed(2);
+        document.getElementById("biomassResult").textContent = `Hasil: ${biomass} g/m²`;
+      }
+    </script>
+  </body>
+</html>

@@ -124,5 +124,3 @@ def penyakit():
 def peta():
     return render_template("peta.html")
 
-if __name__ == '__main__':
-    app.run(debug=True)
